@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DriverBook</string>
+    <string name="action_settings">Settings</string>
+    <string name="tab_menu_home">主页</string>
+    <string name="tab_menu_class">分类</string>
+    <string name="tab_menu_love">收藏</string>
+    <string name="tab_menu_user">用户</string>
+</resources>
