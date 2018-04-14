@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MaikTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MaikTheme.Day">
+
+    </style>
+
+    <style name="MaikTheme.Night">
+
+    </style>
+
+    <style name="MaikTheme.Day.Preview"/>
+    <style name="MaikTheme.Night.Preview"/>
+</resources>

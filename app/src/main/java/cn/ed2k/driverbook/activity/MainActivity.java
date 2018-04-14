@@ -1,5 +1,7 @@
 package cn.ed2k.driverbook.activity;
 
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,10 +21,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
 
     private RadioGroup rg_tab_bar;
-    private RadioButton rb_home;
-    private RadioButton rb_classify;
-    private RadioButton rb_love;
-    private RadioButton rb_user;
+    private RadioButton[] rbs;
     private ViewPager vpager;
 
     private FragmentPagerAdapter mAdapter;
@@ -43,18 +42,31 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
 
     private void bindViews(){
         rg_tab_bar = (RadioGroup)findViewById(R.id.rg_tab_bar);
-        rb_home = (RadioButton) findViewById(R.id.rb_home);
-        rb_classify = (RadioButton) findViewById(R.id.rb_classify);
-        rb_love = (RadioButton) findViewById(R.id.rb_love);
-        rb_user = (RadioButton) findViewById(R.id.rb_user);
+        rbs = new RadioButton[4];
+        rbs[PAGE_ONE] = (RadioButton) findViewById(R.id.rb_home);
+        rbs[PAGE_TWO] = (RadioButton) findViewById(R.id.rb_classify);
+        rbs[PAGE_THREE] = (RadioButton) findViewById(R.id.rb_love);
+        rbs[PAGE_FOUR] = (RadioButton) findViewById(R.id.rb_user);
         rg_tab_bar.setOnCheckedChangeListener(this);
+
+        for (RadioButton rb : rbs) {
+            //挨着给每个RadioButton加入drawable限制边距以控制显示大小
+            Drawable[] drs = rb.getCompoundDrawables();
+            //获取drawables
+            Rect r = new Rect(0, 0, drs[1].getMinimumWidth()*4/5, drs[1].getMinimumHeight()*4/5);
+            //定义一个Rect边界
+            drs[1].setBounds(r);
+
+            rb.setCompoundDrawables(null,drs[1],null,null);
+            //添加限制给控件
+        }
     }
 
     private void initView(){
         vpager = (ViewPager) findViewById(R.id.book_vpager);
         vpager.setAdapter(mAdapter);
         vpager.addOnPageChangeListener(this);
-        rb_home.setChecked(true);
+        rbs[PAGE_ONE].setChecked(true);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -111,16 +123,16 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if (state == 2){
             switch (vpager.getCurrentItem()){
                 case PAGE_ONE:
-                    rb_home.setChecked(true);
+                    rbs[PAGE_ONE].setChecked(true);
                     break;
                 case PAGE_TWO:
-                    rb_classify.setChecked(true);
+                    rbs[PAGE_TWO].setChecked(true);
                     break;
                 case PAGE_THREE:
-                    rb_love.setChecked(true);
+                    rbs[PAGE_THREE].setChecked(true);
                     break;
                 case PAGE_FOUR:
-                    rb_user.setChecked(true);
+                    rbs[PAGE_FOUR].setChecked(true);
                     break;
             }
         }
