@@ -17,7 +17,7 @@ import android.widget.RadioGroup;
 import cn.ed2k.driverbook.R;
 import cn.ed2k.driverbook.adapter.FragmentPagerAdapter;
 
-public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
 
 
     private RadioGroup rg_tab_bar;
@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager());
         bindViews();
         initView();
+        initData();
+        setEvent();
     }
 
     private void bindViews(){
@@ -47,6 +49,22 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rbs[PAGE_TWO] = (RadioButton) findViewById(R.id.rb_classify);
         rbs[PAGE_THREE] = (RadioButton) findViewById(R.id.rb_love);
         rbs[PAGE_FOUR] = (RadioButton) findViewById(R.id.rb_user);
+
+    }
+
+    private void initView(){
+        vpager = (ViewPager) findViewById(R.id.book_vpager);
+        vpager.setAdapter(mAdapter);
+        vpager.addOnPageChangeListener(this);
+        rbs[PAGE_ONE].setChecked(true);
+    }
+
+    private void initData() {
+
+    }
+
+
+    private void setEvent() {
         rg_tab_bar.setOnCheckedChangeListener(this);
 
         for (RadioButton rb : rbs) {
@@ -62,12 +80,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         }
     }
 
-    private void initView(){
-        vpager = (ViewPager) findViewById(R.id.book_vpager);
-        vpager.setAdapter(mAdapter);
-        vpager.addOnPageChangeListener(this);
-        rbs[PAGE_ONE].setChecked(true);
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

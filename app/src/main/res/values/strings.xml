@@ -5,4 +5,11 @@
     <string name="tab_menu_class">分类</string>
     <string name="tab_menu_love">收藏</string>
     <string name="tab_menu_user">用户</string>
+    <string name="user_name">用户名</string>
+    <string name="login_name">请输入用户名</string>
+    <string name="login_password">请输入密码</string>
+    <string name="signup_repassword">重复密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_forget_password">忘记密码</string>
+    <string name="login_sign_up">注册账号</string>
 </resources>

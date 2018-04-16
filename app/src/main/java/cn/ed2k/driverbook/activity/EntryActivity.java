@@ -27,8 +27,9 @@ public class EntryActivity extends BaseActivity {
         animateImage();
     }
 
+
     private void animateImage(){
-        intent = new Intent(this,MainActivity.class);
+//        intent = new Intent(this,MainActivity.class);
         mSplashImage = (ImageView) findViewById(R.id.entry_doge_bg);
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(mSplashImage,"scaleX",1f,1.6f);
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(mSplashImage,"scaleY",1f,1.6f);
@@ -41,9 +42,9 @@ public class EntryActivity extends BaseActivity {
         set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-//                Intent intent = new Intent(this,MainActivity.class);
+                Intent intent = new Intent(EntryActivity.this,LoginActivity.class);
                 startActivity(intent);
-                finish();
+                EntryActivity.this.finish();
             }
         });
 
