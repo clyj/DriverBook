@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#000000</color>
     <color name="bg_whith">#FFFFFF</color>
+    <color name="fragment_bg">#F6F6F6</color>
     <color name="text_whith">#FFFFFF</color>
     <color name="text_blue">#1296db</color>
     <color name="text_gray">#bfbfbf</color>

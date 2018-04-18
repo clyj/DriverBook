@@ -15,6 +15,7 @@ import cn.ed2k.driverbook.R;
 
 public class EntryActivity extends BaseActivity {
 
+    private static final String TAG ="EntryActivity";
 
     private ImageView mSplashImage;
     private Intent intent;

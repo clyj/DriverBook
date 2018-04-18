@@ -2,6 +2,7 @@ package cn.ed2k.driverbook.activity;
 
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -19,11 +21,12 @@ import cn.ed2k.driverbook.adapter.FragmentPagerAdapter;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
 
+    private static final String TAG ="MainActivity";
 
     private RadioGroup rg_tab_bar;
     private RadioButton[] rbs;
     private ViewPager vpager;
-
+    private Toolbar mToolbar;
     private FragmentPagerAdapter mAdapter;
 
 
@@ -35,7 +38,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager());
         bindViews();
         initView();
         initData();
@@ -49,6 +51,9 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         rbs[PAGE_TWO] = (RadioButton) findViewById(R.id.rb_classify);
         rbs[PAGE_THREE] = (RadioButton) findViewById(R.id.rb_love);
         rbs[PAGE_FOUR] = (RadioButton) findViewById(R.id.rb_user);
+        mToolbar = (Toolbar) findViewById(R.id.Main_toolbar);
+        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager());
+
 
     }
 
@@ -57,6 +62,16 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         vpager.setAdapter(mAdapter);
         vpager.addOnPageChangeListener(this);
         rbs[PAGE_ONE].setChecked(true);
+
+        mToolbar.setTitleTextColor(getResources().getColor(R.color.text_whith));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WindowManager.LayoutParams layoutParams=getWindow().getAttributes();
+            layoutParams.flags=(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS|layoutParams.flags);
+        }
+        mToolbar.setTitle(R.string.tab_menu_home);
+        setSupportActionBar(mToolbar);
+
+
     }
 
     private void initData() {
@@ -83,7 +98,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -107,15 +121,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         switch (checkedId){
             case R.id.rb_home:
                 vpager.setCurrentItem(PAGE_ONE,false);
+                mToolbar.setTitle(R.string.tab_menu_home);
                 break;
             case R.id.rb_classify:
                 vpager.setCurrentItem(PAGE_TWO,false);
+                mToolbar.setTitle(R.string.tab_menu_class);
                 break;
             case R.id.rb_love:
                 vpager.setCurrentItem(PAGE_THREE,false);
+                mToolbar.setTitle(R.string.tab_menu_love);
                 break;
             case R.id.rb_user:
                 vpager.setCurrentItem(PAGE_FOUR,false);
+                mToolbar.setTitle(R.string.tab_menu_user);
                 break;
         }
     }
@@ -136,15 +154,19 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             switch (vpager.getCurrentItem()){
                 case PAGE_ONE:
                     rbs[PAGE_ONE].setChecked(true);
+                    mToolbar.setTitle(R.string.tab_menu_home);
                     break;
                 case PAGE_TWO:
                     rbs[PAGE_TWO].setChecked(true);
+                    mToolbar.setTitle(R.string.tab_menu_class);
                     break;
                 case PAGE_THREE:
                     rbs[PAGE_THREE].setChecked(true);
+                    mToolbar.setTitle(R.string.tab_menu_love);
                     break;
                 case PAGE_FOUR:
                     rbs[PAGE_FOUR].setChecked(true);
+                    mToolbar.setTitle(R.string.tab_menu_user);
                     break;
             }
         }

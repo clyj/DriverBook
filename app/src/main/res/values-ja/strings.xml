@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FreeBook</string>
+    <string name="action_settings">Settings</string>
+    <string name="tab_menu_home">メインページ</string>
+    <string name="tab_menu_class">クラス</string>
+    <string name="tab_menu_love">收藏</string>
+    <string name="tab_menu_user">ユーザー</string>
+    <string name="user_name">ユーザー名</string>
+    <string name="user_password">暗証番号</string>
+    <string name="login_name">ユーザー名を入力してください。</string>
+    <string name="login_password">暗証番号を入力してください</string>
+    <string name="signup_repassword">パスワードを繰り返す</string>
+    <string name="login_login">ログイン</string>
+    <string name="login_forget_password">パスワードを忘れる</string>
+    <string name="login_sign_up">アカウントを登録する</string>
+    <string name="signup_signup">登録</string>
+    <string name="confirm">はい</string>
+</resources>
